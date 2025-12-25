@@ -23,20 +23,14 @@ impl Scsi {
         let mut options = OpenOptions::new();
         options.read(true).write(true);
         let file_descriptor = FileDescriptor::open(&path, options)?;
+        Self::from_descriptor(path, file_descriptor)
+    }
 
-        if !file_descriptor.is_block()? {
-            return Err(crate::Error::NotBlockDevice(path.as_ref().to_owned()));
-        }
-
-        if !Self::is_scsi_device(&file_descriptor)? {
-            return Err(crate::Error::NotScsiDevice(path.as_ref().to_owned()));
-        }
-
-        Ok(Scsi {
-            path: path.as_ref().to_owned(),
-            file_descriptor,
-            timeout: Duration::from_millis(SG_DEFAULT_TIMEOUT),
-        })
+    pub fn new_readonly<P: AsRef<Path> + ?Sized>(path: &P) -> crate::Result<Scsi> {
+        let mut options = OpenOptions::new();
+        options.read(true);
+        let file_descriptor = FileDescriptor::open(&path, options)?;
+        Self::from_descriptor(path, file_descriptor)
     }
 
     #[cfg(target_os = "linux")]
@@ -243,6 +237,25 @@ impl Scsi {
 
     pub fn timeout(&self) -> Duration {
         self.timeout
+    }
+
+    fn from_descriptor<P: AsRef<Path> + ?Sized>(
+        path: &P,
+        file_descriptor: FileDescriptor,
+    ) -> crate::Result<Scsi> {
+        if !file_descriptor.is_block()? {
+            return Err(crate::Error::NotBlockDevice(path.as_ref().to_owned()));
+        }
+
+        if !Self::is_scsi_device(&file_descriptor)? {
+            return Err(crate::Error::NotScsiDevice(path.as_ref().to_owned()));
+        }
+
+        Ok(Scsi {
+            path: path.as_ref().to_owned(),
+            file_descriptor,
+            timeout: Duration::from_millis(SG_DEFAULT_TIMEOUT),
+        })
     }
 
     #[cfg(target_os = "linux")]
