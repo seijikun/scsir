@@ -55,7 +55,7 @@ impl<'a> SecurityProtocolInCommand<'a> {
 }
 
 impl Scsi {
-    pub fn security_protocol_in(&self) -> SecurityProtocolInCommand {
+    pub fn security_protocol_in(&self) -> SecurityProtocolInCommand<'_> {
         SecurityProtocolInCommand::new(self)
     }
 }

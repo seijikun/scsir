@@ -108,7 +108,7 @@ impl<'a> ReportSupportedOperationCodesCommand<'a> {
 }
 
 impl Scsi {
-    pub fn report_supported_operation_codes(&self) -> ReportSupportedOperationCodesCommand {
+    pub fn report_supported_operation_codes(&self) -> ReportSupportedOperationCodesCommand<'_> {
         ReportSupportedOperationCodesCommand::new(self)
     }
 }

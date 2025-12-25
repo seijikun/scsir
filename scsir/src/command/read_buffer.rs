@@ -122,7 +122,7 @@ impl<'a> ReadBufferCommand<'a> {
 }
 
 impl Scsi {
-    pub fn read_buffer(&self) -> ReadBufferCommand {
+    pub fn read_buffer(&self) -> ReadBufferCommand<'_> {
         ReadBufferCommand::new(self)
     }
 }

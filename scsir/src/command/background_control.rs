@@ -60,7 +60,7 @@ impl<'a> BackgroundControlCommand<'a> {
 }
 
 impl Scsi {
-    pub fn background_control(&self) -> BackgroundControlCommand {
+    pub fn background_control(&self) -> BackgroundControlCommand<'_> {
         BackgroundControlCommand::new(self)
     }
 }

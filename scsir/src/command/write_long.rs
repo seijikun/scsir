@@ -86,7 +86,7 @@ impl<'a> WriteLongCommand<'a> {
 }
 
 impl Scsi {
-    pub fn write_long(&self) -> WriteLongCommand {
+    pub fn write_long(&self) -> WriteLongCommand<'_> {
         WriteLongCommand::new(self)
     }
 }

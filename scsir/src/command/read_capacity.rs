@@ -93,7 +93,7 @@ impl<'a> ReadCapacityCommand<'a> {
 }
 
 impl Scsi {
-    pub fn read_capacity(&self) -> ReadCapacityCommand {
+    pub fn read_capacity(&self) -> ReadCapacityCommand<'_> {
         ReadCapacityCommand::new(self)
     }
 }

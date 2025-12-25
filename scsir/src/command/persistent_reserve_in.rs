@@ -120,7 +120,7 @@ impl<'a> PersistentReserveInCommand<'a> {
 }
 
 impl Scsi {
-    pub fn persistent_reserve_in(&self) -> PersistentReserveInCommand {
+    pub fn persistent_reserve_in(&self) -> PersistentReserveInCommand<'_> {
         PersistentReserveInCommand::new(self)
     }
 }

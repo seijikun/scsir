@@ -70,7 +70,7 @@ impl<'a> ReportLunsCommand<'a> {
 }
 
 impl Scsi {
-    pub fn report_luns(&self) -> ReportLunsCommand {
+    pub fn report_luns(&self) -> ReportLunsCommand<'_> {
         ReportLunsCommand::new(self)
     }
 }

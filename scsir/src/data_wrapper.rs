@@ -125,7 +125,7 @@ impl<Body, Element> FlexibleStruct<Body, Element> {
         self.capacity
     }
 
-    pub fn iter_maybe_uninit(&self) -> MaybeUninitIter<Body, Element> {
+    pub fn iter_maybe_uninit(&self) -> MaybeUninitIter<'_, Body, Element> {
         MaybeUninitIter {
             this: self,
             index: 0,
@@ -182,7 +182,7 @@ impl<Body: Default, Element> FlexibleStruct<Body, Element> {
 }
 
 impl<Body, Element: Clone> FlexibleStruct<Body, Element> {
-    pub fn iter_clone(&self) -> CloneIter<Body, Element> {
+    pub fn iter_clone(&self) -> CloneIter<'_, Body, Element> {
         CloneIter {
             maybe_uninit_iter: self.iter_maybe_uninit(),
         }

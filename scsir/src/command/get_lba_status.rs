@@ -91,7 +91,7 @@ impl<'a> GetLbaStatusCommand<'a> {
 }
 
 impl Scsi {
-    pub fn get_lba_status(&self) -> GetLbaStatusCommand {
+    pub fn get_lba_status(&self) -> GetLbaStatusCommand<'_> {
         GetLbaStatusCommand::new(self)
     }
 }

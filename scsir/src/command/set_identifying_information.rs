@@ -61,7 +61,7 @@ impl<'a> SetIdentifyingInformationCommand<'a> {
 }
 
 impl Scsi {
-    pub fn set_identifying_information(&self) -> SetIdentifyingInformationCommand {
+    pub fn set_identifying_information(&self) -> SetIdentifyingInformationCommand<'_> {
         SetIdentifyingInformationCommand::new(self)
     }
 }

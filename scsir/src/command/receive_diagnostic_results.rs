@@ -47,7 +47,7 @@ impl<'a> ReceiveDiagnosticResultsCommand<'a> {
 }
 
 impl Scsi {
-    pub fn receive_diagnostic_results(&self) -> ReceiveDiagnosticResultsCommand {
+    pub fn receive_diagnostic_results(&self) -> ReceiveDiagnosticResultsCommand<'_> {
         ReceiveDiagnosticResultsCommand::new(self)
     }
 }

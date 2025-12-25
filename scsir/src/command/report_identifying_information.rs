@@ -55,7 +55,7 @@ impl<'a> ReportIdentifyingInformationCommand<'a> {
 }
 
 impl Scsi {
-    pub fn report_identifying_information(&self) -> ReportIdentifyingInformationCommand {
+    pub fn report_identifying_information(&self) -> ReportIdentifyingInformationCommand<'_> {
         ReportIdentifyingInformationCommand::new(self)
     }
 }

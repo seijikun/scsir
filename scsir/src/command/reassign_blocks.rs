@@ -87,7 +87,7 @@ impl<'a> ParameterBuilder<'a> {
         self
     }
 
-    pub fn done(&'a mut self) -> crate::Result<&'a mut ReassignBlocksCommand> {
+    pub fn done(&'a mut self) -> crate::Result<&'a mut ReassignBlocksCommand<'a>> {
         let data_length_bits = if self.long_lba_list { 32 } else { 16 };
 
         bitfield_bound_check!(self.data_length, data_length_bits, "parameter length")?;
@@ -104,7 +104,7 @@ impl<'a> ParameterBuilder<'a> {
 }
 
 impl Scsi {
-    pub fn reassign_blocks(&self) -> ReassignBlocksCommand {
+    pub fn reassign_blocks(&self) -> ReassignBlocksCommand<'_> {
         ReassignBlocksCommand::new(self)
     }
 }

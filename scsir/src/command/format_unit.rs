@@ -107,7 +107,7 @@ impl<'a> FormatUnitCommand<'a> {
         self
     }
 
-    pub fn parameter(&'a mut self) -> ParameterBuilder {
+    pub fn parameter(&'a mut self) -> ParameterBuilder<'a> {
         ParameterBuilder::new(self)
     }
 
@@ -223,7 +223,7 @@ impl<'a> ParameterBuilder<'a> {
         DefectListBuilder::new(self)
     }
 
-    pub fn done(&'a mut self) -> crate::Result<&'a mut FormatUnitCommand> {
+    pub fn done(&'a mut self) -> crate::Result<&'a mut FormatUnitCommand<'a>> {
         self.parent
             .command_buffer
             .set_longlist(self.longlist.into());
@@ -284,7 +284,7 @@ impl<'a> ShortParameterListHeaderBuilder<'a> {
         self
     }
 
-    pub fn done(&'a mut self) -> crate::Result<&'a mut ParameterBuilder> {
+    pub fn done(&'a mut self) -> crate::Result<&'a mut ParameterBuilder<'a>> {
         let parent = self.delegate.done()?;
         parent.longlist = false;
         Ok(parent)
@@ -348,7 +348,7 @@ impl<'a> LongParameterListHeaderBuilder<'a> {
         self
     }
 
-    pub fn done(&'a mut self) -> crate::Result<&'a mut ParameterBuilder> {
+    pub fn done(&'a mut self) -> crate::Result<&'a mut ParameterBuilder<'a>> {
         bitfield_bound_check!(self.protection_fields_usage, 3, "protection fields usage")?;
         bitfield_bound_check!(
             self.protection_interval_exponent,
@@ -395,7 +395,7 @@ impl<'a> InitializationPatternDescriptorBuilder<'a> {
         self
     }
 
-    pub fn done(&'a mut self) -> crate::Result<&'a mut ParameterBuilder> {
+    pub fn done(&'a mut self) -> crate::Result<&'a mut ParameterBuilder<'a>> {
         bitfield_bound_check!(
             self.initialization_pattern.len(),
             16,
@@ -537,7 +537,7 @@ impl<'a> DefectListBuilder<'a> {
         self
     }
 
-    pub fn done(&'a mut self) -> crate::Result<&'a mut ParameterBuilder> {
+    pub fn done(&'a mut self) -> crate::Result<&'a mut ParameterBuilder<'a>> {
         for w in self.defect_list.windows(2) {
             if std::mem::discriminant(&w[0]) != std::mem::discriminant(&w[1]) {
                 return Err(crate::Error::BadArgument(
@@ -587,7 +587,7 @@ impl<'a> DefectListBuilder<'a> {
 }
 
 impl Scsi {
-    pub fn format_unit(&self) -> FormatUnitCommand {
+    pub fn format_unit(&self) -> FormatUnitCommand<'_> {
         FormatUnitCommand::new(self)
     }
 }

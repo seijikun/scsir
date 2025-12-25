@@ -119,7 +119,7 @@ impl<'a> LogSenseCommand<'a> {
 }
 
 impl Scsi {
-    pub fn log_sense(&self) -> LogSenseCommand {
+    pub fn log_sense(&self) -> LogSenseCommand<'_> {
         LogSenseCommand::new(self)
     }
 }

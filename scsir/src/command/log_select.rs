@@ -99,7 +99,7 @@ impl<'a> LogSelectCommand<'a> {
 }
 
 impl Scsi {
-    pub fn log_select(&self) -> LogSelectCommand {
+    pub fn log_select(&self) -> LogSelectCommand<'_> {
         LogSelectCommand::new(self)
     }
 }

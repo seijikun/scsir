@@ -42,7 +42,7 @@ impl<'a> RequestSenseCommand<'a> {
 }
 
 impl Scsi {
-    pub fn request_sense(&self) -> RequestSenseCommand {
+    pub fn request_sense(&self) -> RequestSenseCommand<'_> {
         RequestSenseCommand::new(self)
     }
 }

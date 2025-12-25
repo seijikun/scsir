@@ -208,7 +208,7 @@ impl<'a> WriteAtomicCommand<'a> {
 }
 
 impl Scsi {
-    pub fn write_atomic(&self) -> WriteAtomicCommand {
+    pub fn write_atomic(&self) -> WriteAtomicCommand<'_> {
         WriteAtomicCommand::new(self)
     }
 }

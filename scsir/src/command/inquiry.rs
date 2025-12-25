@@ -83,7 +83,7 @@ impl<'a> InquiryCommand<'a> {
 }
 
 impl Scsi {
-    pub fn inquiry(&self) -> InquiryCommand {
+    pub fn inquiry(&self) -> InquiryCommand<'_> {
         InquiryCommand::new(self)
     }
 }

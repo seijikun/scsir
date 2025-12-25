@@ -148,7 +148,7 @@ impl<'a> ModeSenseCommand<'a> {
 }
 
 impl Scsi {
-    pub fn mode_sense(&self) -> ModeSenseCommand {
+    pub fn mode_sense(&self) -> ModeSenseCommand<'_> {
         ModeSenseCommand::new(self)
     }
 }

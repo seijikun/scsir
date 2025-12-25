@@ -243,7 +243,7 @@ impl<'a> WriteAndVerifyCommand<'a> {
 }
 
 impl Scsi {
-    pub fn write_and_verify(&self) -> WriteAndVerifyCommand {
+    pub fn write_and_verify(&self) -> WriteAndVerifyCommand<'_> {
         WriteAndVerifyCommand::new(self)
     }
 }

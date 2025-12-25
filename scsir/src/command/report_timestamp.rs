@@ -42,7 +42,7 @@ impl<'a> ReportTimestampCommand<'a> {
 }
 
 impl Scsi {
-    pub fn report_timestamp(&self) -> ReportTimestampCommand {
+    pub fn report_timestamp(&self) -> ReportTimestampCommand<'_> {
         ReportTimestampCommand::new(self)
     }
 }

@@ -194,7 +194,7 @@ impl<'a> WriteSameCommand<'a> {
 }
 
 impl Scsi {
-    pub fn write_stream(&self) -> WriteSameCommand {
+    pub fn write_stream(&self) -> WriteSameCommand<'_> {
         WriteSameCommand::new(self)
     }
 }

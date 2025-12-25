@@ -1,3 +1,6 @@
+// modular_bitfield_msb generates fields that trip unused_parens; keep this crate clean.
+#![allow(unused_parens)]
+
 pub mod command;
 mod data_direction;
 mod data_wrapper;

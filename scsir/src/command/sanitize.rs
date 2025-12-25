@@ -124,7 +124,7 @@ impl<'a> OverwriteParameterListBuilder<'a> {
         self
     }
 
-    pub fn done(&mut self) -> crate::Result<&'a mut SanitizeCommand> {
+    pub fn done(&'a mut self) -> crate::Result<&'a mut SanitizeCommand<'a>> {
         bitfield_bound_check!(self.test, 2, "test")?;
         bitfield_bound_check!(self.overwrite_count, 5, "overwrite count")?;
         bitfield_bound_check!(
@@ -149,7 +149,7 @@ impl<'a> OverwriteParameterListBuilder<'a> {
 }
 
 impl Scsi {
-    pub fn sanitize(&self) -> SanitizeCommand {
+    pub fn sanitize(&self) -> SanitizeCommand<'_> {
         SanitizeCommand::new(self)
     }
 }

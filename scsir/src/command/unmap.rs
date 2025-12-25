@@ -51,7 +51,7 @@ impl<'a> UnmapCommand<'a> {
         self
     }
 
-    pub fn parameter(&'a mut self) -> ParameterBuilder {
+    pub fn parameter(&'a mut self) -> ParameterBuilder<'a> {
         ParameterBuilder::new(self)
     }
 
@@ -88,7 +88,7 @@ impl<'a> ParameterBuilder<'a> {
         self
     }
 
-    pub fn done(&mut self) -> crate::Result<&'a mut UnmapCommand> {
+    pub fn done(&'a mut self) -> crate::Result<&'a mut UnmapCommand<'a>> {
         let total_size = self.data_buffer.total_size();
         bitfield_bound_check!(total_size, 16, "parameter list length")?;
 
@@ -107,7 +107,7 @@ impl<'a> ParameterBuilder<'a> {
 }
 
 impl Scsi {
-    pub fn unmap(&self) -> UnmapCommand {
+    pub fn unmap(&self) -> UnmapCommand<'_> {
         UnmapCommand::new(self)
     }
 }

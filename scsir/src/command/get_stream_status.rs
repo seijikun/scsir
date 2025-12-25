@@ -76,7 +76,7 @@ impl<'a> GetStreamStatusCommand<'a> {
 }
 
 impl Scsi {
-    pub fn get_stream_status(&self) -> GetStreamStatusCommand {
+    pub fn get_stream_status(&self) -> GetStreamStatusCommand<'_> {
         GetStreamStatusCommand::new(self)
     }
 }

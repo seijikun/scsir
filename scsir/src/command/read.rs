@@ -275,7 +275,7 @@ impl<'a> ReadCommand<'a> {
 }
 
 impl Scsi {
-    pub fn read(&self) -> ReadCommand {
+    pub fn read(&self) -> ReadCommand<'_> {
         ReadCommand::new(self)
     }
 }

@@ -71,7 +71,7 @@ impl<'a> ReportSupportedTaskManagementFunctionsCommand<'a> {
 impl Scsi {
     pub fn report_supported_task_management_functions(
         &self,
-    ) -> ReportSupportedTaskManagementFunctionsCommand {
+    ) -> ReportSupportedTaskManagementFunctionsCommand<'_> {
         ReportSupportedTaskManagementFunctionsCommand::new(self)
     }
 }

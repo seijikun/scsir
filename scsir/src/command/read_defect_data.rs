@@ -230,7 +230,7 @@ impl<'a> ReadDefectDataCommand<'a> {
 }
 
 impl Scsi {
-    pub fn read_defect_data(&self) -> ReadDefectDataCommand {
+    pub fn read_defect_data(&self) -> ReadDefectDataCommand<'_> {
         ReadDefectDataCommand::new(self)
     }
 }

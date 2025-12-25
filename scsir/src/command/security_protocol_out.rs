@@ -75,7 +75,7 @@ impl<'a> SecurityProtocolOutCommand<'a> {
 }
 
 impl Scsi {
-    pub fn security_protocol_out(&self) -> SecurityProtocolOutCommand {
+    pub fn security_protocol_out(&self) -> SecurityProtocolOutCommand<'_> {
         SecurityProtocolOutCommand::new(self)
     }
 }

@@ -217,7 +217,7 @@ impl<'a> WriteSameCommand<'a> {
 }
 
 impl Scsi {
-    pub fn write_same(&self) -> WriteSameCommand {
+    pub fn write_same(&self) -> WriteSameCommand<'_> {
         WriteSameCommand::new(self)
     }
 }

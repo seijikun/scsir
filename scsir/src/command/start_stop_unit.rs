@@ -73,7 +73,7 @@ impl<'a> StartStopUnitCommand<'a> {
 }
 
 impl Scsi {
-    pub fn start_stop_unit(&self) -> StartStopUnitCommand {
+    pub fn start_stop_unit(&self) -> StartStopUnitCommand<'_> {
         StartStopUnitCommand::new(self)
     }
 }

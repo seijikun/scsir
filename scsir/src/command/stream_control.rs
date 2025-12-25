@@ -75,14 +75,14 @@ impl<'a> ParameterBuilder<'a> {
         self
     }
 
-    pub fn done(&mut self) -> crate::Result<&'a mut StreamControlCommand> {
+    pub fn done(&'a mut self) -> crate::Result<&'a mut StreamControlCommand<'a>> {
         self.parent.data_buffer = self.data_buffer;
         Ok(self.parent)
     }
 }
 
 impl Scsi {
-    pub fn stream_control(&self) -> StreamControlCommand {
+    pub fn stream_control(&self) -> StreamControlCommand<'_> {
         StreamControlCommand::new(self)
     }
 }

@@ -102,7 +102,7 @@ impl<'a> SynchronizeCacheCommand<'a> {
 }
 
 impl Scsi {
-    pub fn synchronize_cache(&self) -> SynchronizeCacheCommand {
+    pub fn synchronize_cache(&self) -> SynchronizeCacheCommand<'_> {
         SynchronizeCacheCommand::new(self)
     }
 }

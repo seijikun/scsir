@@ -31,7 +31,7 @@ impl<'a> TestUnitReadyCommand<'a> {
 }
 
 impl Scsi {
-    pub fn test_unit_ready(&self) -> TestUnitReadyCommand {
+    pub fn test_unit_ready(&self) -> TestUnitReadyCommand<'_> {
         TestUnitReadyCommand::new(self)
     }
 }

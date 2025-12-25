@@ -112,7 +112,7 @@ impl<'a> ModeSelectCommand<'a> {
 }
 
 impl Scsi {
-    pub fn mode_select(&self) -> ModeSelectCommand {
+    pub fn mode_select(&self) -> ModeSelectCommand<'_> {
         ModeSelectCommand::new(self)
     }
 }

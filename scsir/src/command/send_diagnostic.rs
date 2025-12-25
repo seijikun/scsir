@@ -78,7 +78,7 @@ impl<'a> SendDiagnosticCommand<'a> {
 }
 
 impl Scsi {
-    pub fn send_diagnostic(&self) -> SendDiagnosticCommand {
+    pub fn send_diagnostic(&self) -> SendDiagnosticCommand<'_> {
         SendDiagnosticCommand::new(self)
     }
 }

@@ -273,7 +273,7 @@ impl<'a> WriteCommand<'a> {
 }
 
 impl Scsi {
-    pub fn write(&self) -> WriteCommand {
+    pub fn write(&self) -> WriteCommand<'_> {
         WriteCommand::new(self)
     }
 }

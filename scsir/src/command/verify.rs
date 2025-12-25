@@ -275,7 +275,7 @@ impl<'a> VerifyCommand<'a> {
 }
 
 impl Scsi {
-    pub fn verify(&self) -> VerifyCommand {
+    pub fn verify(&self) -> VerifyCommand<'_> {
         VerifyCommand::new(self)
     }
 }

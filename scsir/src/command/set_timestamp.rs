@@ -50,7 +50,7 @@ impl<'a> SetTimestampCommand<'a> {
 }
 
 impl Scsi {
-    pub fn set_timestamp(&self) -> SetTimestampCommand {
+    pub fn set_timestamp(&self) -> SetTimestampCommand<'_> {
         SetTimestampCommand::new(self)
     }
 }

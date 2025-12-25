@@ -122,7 +122,7 @@ impl<'a> ParameterBuilder<'a> {
         RegisterAndMoveParameterData::new(self)
     }
 
-    pub fn done(&'a mut self) -> &'a mut PersistentReserveOutCommand {
+    pub fn done(&'a mut self) -> &'a mut PersistentReserveOutCommand<'a> {
         self.parent.data_buffer = std::mem::take(&mut self.data_buffer);
         self.parent
     }
@@ -169,7 +169,7 @@ impl<'a> BasicParameterData<'a> {
         self
     }
 
-    pub fn done(&'a mut self) -> &'a mut ParameterBuilder {
+    pub fn done(&'a mut self) -> &'a mut ParameterBuilder<'a> {
         self.parent.data_buffer.clear();
         self.parent
             .data_buffer
@@ -226,7 +226,7 @@ impl<'a> RegisterAndMoveParameterData<'a> {
         self
     }
 
-    pub fn done(&'a mut self) -> &'a mut ParameterBuilder {
+    pub fn done(&'a mut self) -> &'a mut ParameterBuilder<'a> {
         self.parent.data_buffer.clear();
         self.header
             .set_transportid_parameter_data_length(self.transport_id.len() as u32);
@@ -240,7 +240,7 @@ impl<'a> RegisterAndMoveParameterData<'a> {
 }
 
 impl Scsi {
-    pub fn persistent_reserve_out(&self) -> PersistentReserveOutCommand {
+    pub fn persistent_reserve_out(&self) -> PersistentReserveOutCommand<'_> {
         PersistentReserveOutCommand::new(self)
     }
 }
